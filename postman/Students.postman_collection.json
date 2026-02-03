@@ -1,130 +1,129 @@
 {
   "info": {
-    "_postman_id": "2b2510bb-788c-40a1-93fc-190c21ccf282",
-    "name": "Auth",
+    "_postman_id": "e8c16b99-3593-4026-9403-45613e7c1c28",
+    "name": "Students",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "50245308",
-    "_collection_link": "https://go.postman.co/collection/50245308-2b2510bb-788c-40a1-93fc-190c21ccf282?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/50245308-e8c16b99-3593-4026-9403-45613e7c1c28?source=collection_link"
   },
   "item": [
     {
-      "name": "Get All Users",
+      "name": "Listar Alumnos",
       "request": {
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "{{base_url}}/auth/",
+          "raw": "{{base_url}}/student",
           "host": [
             "{{base_url}}"
           ],
           "path": [
-            "auth",
-            ""
+            "student"
           ]
         }
       },
       "response": []
     },
     {
-      "name": "Register",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n    \"first_name\": \"Maitena\",\r\n    \"last_name\": \"Ken\",\r\n    \"email\": \"maite@example.com\",\r\n    \"password\": \"maite123\",\r\n    \"age\": 30\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "{{base_url}}/auth/register",
-          "host": [
-            "{{base_url}}"
-          ],
-          "path": [
-            "auth",
-            "register"
-          ]
-        }
+      "name": "Listar Alumnos By ID",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
       },
-      "response": []
-    },
-    {
-      "name": "Login",
       "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n    \"email\": \"maite@example.com\",\r\n    \"password\": \"maite123\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "{{base_url}}/auth/login",
-          "host": [
-            "{{base_url}}"
-          ],
-          "path": [
-            "auth",
-            "login"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Logout",
-      "request": {
-        "auth": {
-          "type": "noauth"
-        },
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n    \"email\": \"maite@example.com\",\r\n    \"password\": \"maite123\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "{{base_url}}/auth/logout",
-          "host": [
-            "{{base_url}}"
-          ],
-          "path": [
-            "auth",
-            "logout"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "My Profile",
-      "request": {
-        "auth": {
-          "type": "noauth"
-        },
         "method": "GET",
         "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
         "url": {
-          "raw": "{{base_url}}/auth/me",
+          "raw": "{{base_url}}/student/6980d6c9a0c92960bd8351b",
           "host": [
             "{{base_url}}"
           ],
           "path": [
-            "auth",
-            "me"
+            "student",
+            "6980d6c9a0c92960bd8351b"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Crear Alumnos",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Enzo\",\r\n    \"email\": \"enzo@example.com\",\r\n    \"age\": 17\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/student",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "student"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Actualizar Alumno By ID",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Melina\",\r\n    \"email\": \"enzo@example.com\",\r\n    \"age\": 23\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/student/6980d68ba0c92960bd8351ad",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "student",
+            "6980d68ba0c92960bd8351ad"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Eliminar Alumno By ID",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Gabriel Carbia\",\r\n    \"email\": \"gabriel@example.com\",\r\n    \"age\": 23\r\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/student/6980d6c9a0c92960bd8351b4",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "student",
+            "6980d6c9a0c92960bd8351b4"
           ]
         }
       },
