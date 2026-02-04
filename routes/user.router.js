@@ -12,7 +12,7 @@ router.post("/register", alreadyLogin, async (req, res) => {
       res.status(400).json({error: "Todos los datos son requeridos"});
     }
 
-    const exist = await User.findOne({email});
+    const exist = await User.findOne({email}); //Valido que existe el usuario
     if (exist)
       return res
         .status(400)

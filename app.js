@@ -1,49 +1,65 @@
 import express from "express";
-import {
-  connectMongoDB,
-  connectMongoAtlasDB,
-} from "./config/db/connect.config.js";
+import {connectAuto} from "./config/db/connect.config.js";
+import {initPassport} from "./config/auth/passport.config.js";
+
 import homeRouter from "./routes/home.router.js";
 import studentRouter from "./routes/student.router.js";
 import userRouter from "./routes/user.router.js";
-import logger from "./middleware/logger.middleware.js";
-import session from "express-session";
-import MongoStore from "connect-mongo";
+import authRouter from "./routes/auth.router.js";
 import profileRouter from "./routes/profile.router.js";
 
+import logger from "./middleware/logger.middleware.js";
+
+import session from "express-session";
+import MongoStore from "connect-mongo";
+import dotenv from "dotenv";
+import passport from "passport";
+import cookieParser from "cookie-parser"; //Parsea la clave secreta
+
 const app = express();
-const PORT = 8000;
-const ATLAS = false;
-const MONGO_URL = "mongodb://127.0.0.1:27017/backend2";
+
+dotenv.config();
+
+const PORT = process.env.PORT || 8001;
+const SECRET_SESSION = process.env.SECRET_SESSION;
 
 app.use(express.json());
 app.use(logger);
-
-//Generamos la cookie
-app.use(
-  session({
-    secret: "clave_secreta",
-    resave: false,
-    saveUninitialized: false,
-    store: MongoStore.create({
-      mongoUrl: MONGO_URL,
-      ttl: 60 * 60, //1hr
-    }),
-    cookie: {
-      maxAge: 1 * 60 * 60 * 1000,
-      httpOnly: true,
-      signed: true,
-    },
-  }),
-);
-
-app.use("/", homeRouter);
-app.use("/student", studentRouter);
-app.use("/auth", userRouter);
-app.use("/auth/me", profileRouter);
+app.use(cookieParser(SECRET_SESSION));
 
 const startServer = async () => {
-  ATLAS ? connectMongoAtlasDB() : connectMongoDB();
+  await connectAuto();
+
+  const store = MongoStore.create({
+    client: (await import("mongoose")).default.connection.getClient(),
+    ttl: 60 * 60,
+  });
+
+  //Generamos la cookie
+  app.use(
+    session({
+      secret: SECRET_SESSION,
+      resave: false,
+      saveUninitialized: false,
+      store,
+      cookie: {
+        maxAge: 1 * 60 * 60 * 1000,
+        httpOnly: true,
+        signed: true,
+      },
+    }),
+  );
+
+  initPassport();
+  app.use(passport.initialize());
+  app.use(passport.session());
+
+  app.use("/", homeRouter);
+  app.use("/student", studentRouter);
+  app.use("/auth", userRouter);
+  app.use("/auth/me", profileRouter);
+  app.use("/api/auth", authRouter);
+
   app.listen(PORT, () =>
     console.log(`🎧 Servidor escuchando en http://localhost:${PORT}`),
   );
