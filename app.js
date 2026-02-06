@@ -1,4 +1,5 @@
 import express from "express";
+
 import {connectAuto} from "./config/db/connect.config.js";
 import {initPassport} from "./config/auth/passport.config.js";
 
@@ -7,6 +8,7 @@ import studentRouter from "./routes/student.router.js";
 import userRouter from "./routes/user.router.js";
 import authRouter from "./routes/auth.router.js";
 import profileRouter from "./routes/profile.router.js";
+import jwtRouter from "./routes/jwt.router.js";
 
 import logger from "./middleware/logger.middleware.js";
 
@@ -59,6 +61,11 @@ const startServer = async () => {
   app.use("/auth", userRouter);
   app.use("/auth/me", profileRouter);
   app.use("/api/auth", authRouter);
+  app.use("/api/auth-jwt", jwtRouter);
+
+  app.use((req, res) => {
+    res.status(404).json({error: "Page not found"});
+  });
 
   app.listen(PORT, () =>
     console.log(`🎧 Servidor escuchando en http://localhost:${PORT}`),
