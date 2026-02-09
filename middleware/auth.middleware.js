@@ -33,7 +33,7 @@ export const requireJwtCookie = passport.authenticate("jwt-cookie", {
 
 //Autorizacion por roles
 
-export function requireManyRoles(...role) {
+export function requireManyRoles(...roles) {
   return (req, res, next) => {
     if (!req.user) return res.status(401).json({error: "Not Authorized"}); //Valida que exista ese usuario
     if (!roles.includes(req.user.role))

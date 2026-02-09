@@ -17,19 +17,23 @@ router.post("/register", alreadyLogin, async (req, res) => {
   try {
     const {first_name, last_name, email, password, age} = req.body;
     if (!first_name || !last_name || !email || !password || !age) {
-      res.status(400).json({error: "Todos los datos son requeridos"});
+      res.status(400).json({error: "All fields are required"});
     }
 
     const exist = await User.findOne({email});
     if (exist)
       return res
         .status(400)
-        .json({error: `El email ${email} ya está registrado por otro usuario`});
+        .json({
+          error: `The email ${email} is already regstered by another user`,
+        });
 
     const hash = await bcrypt.hash(password, 10);
     const user = new User({first_name, last_name, email, password: hash, age});
     await user.save();
-    res.status(201).json({message: "Usuario registrado con éxito", user: user});
+    res
+      .status(201)
+      .json({message: "User has been registered successfully", user: user});
   } catch (error) {
     res.status(500).json({error: error.message});
   }
