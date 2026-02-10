@@ -1,0 +1,52 @@
+{
+  "info": {
+    "_postman_id": "562134ca-693c-4ec0-9f78-8b5800567e1e",
+    "name": "Process",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "50245308",
+    "_collection_link": "https://go.postman.co/collection/50245308-562134ca-693c-4ec0-9f78-8b5800567e1e?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Process Info",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/process/info",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "process",
+            "info"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Public Process",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/process",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "process"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

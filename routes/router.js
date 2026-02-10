@@ -4,6 +4,9 @@ import userRouter from "./user.router.js";
 import authRouter from "./auth.router.js";
 import profileRouter from "./profile.router.js";
 import jwtRouter from "./jwt.router.js";
+import apiV1Router from "./api.v1.router.js";
+import advancedRouter from "./advanced.router.js";
+import processRouter from "./process.router.js";
 
 export function initRouters(app) {
   app.use("/", homeRouter);
@@ -12,4 +15,14 @@ export function initRouters(app) {
   app.use("/auth/me", profileRouter);
   app.use("/api/auth", authRouter);
   app.use("/api/auth-jwt", jwtRouter);
+
+  // Enrutadores Avanzados y Subenrutadores
+  app.use("/api/v1", apiV1Router);
+  app.use("/advanced", advancedRouter);
+  app.use("/process", processRouter);
+
+  // Enrutador para manejar error 404
+  app.use((req, res) => {
+    res.status(404).json({error: "Page not found"});
+  });
 }

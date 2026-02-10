@@ -1,0 +1,181 @@
+{
+  "info": {
+    "_postman_id": "9f4ff6ab-840c-407c-aa73-8799f2c4758d",
+    "name": "Advanced",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "50245308",
+    "_collection_link": "https://go.postman.co/collection/50245308-9f4ff6ab-840c-407c-aa73-8799f2c4758d?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Versionados",
+      "item": [
+        {
+          "name": "Hola",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Students",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/student",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "student"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Student By Id",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/student/6980dd16fcd84ee6fa0e66fe",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "student",
+                "6980dd16fcd84ee6fa0e66fe"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get My Profile",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/api/auth/me",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "api",
+                "auth",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Get Students By Id",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/advanced/students/6980d68ba0c92960bd8351ad",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "advanced",
+            "students",
+            "6980d68ba0c92960bd8351ad"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Ping",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/advanced/v1/ping",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "advanced",
+            "v1",
+            "ping"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Students Courses By Id",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/advanced/students/6980d68ba0c92960bd8351ad/courses",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "advanced",
+            "students",
+            "6980d68ba0c92960bd8351ad",
+            "courses"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Boom",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/advanced/boom",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "advanced",
+            "boom"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
